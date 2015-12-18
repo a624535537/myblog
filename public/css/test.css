@@ -1,0 +1,20 @@
+.menu{
+	background-color:#000000;
+	opacity:0.5;
+	z-index:0;
+	height:auto;
+	position:absolute;
+	}
+.menuitem{
+	z-index:1; 
+	color:#FFFFFF; 
+	cursor:pointer
+	}
+.titlelist
+{
+    background-color:#000000;
+	opacity:0;
+	z-index:0;
+	height:auto;
+	position:absolute;
+}

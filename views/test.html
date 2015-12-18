@@ -1,0 +1,79 @@
+{% extends './layout.html'%}
+{% block head %}
+{% parent %}
+<link rel="stylesheet" href="/css/test.css" type="text/css">
+{% endblock  %}
+{% block body %}
+<div class="menu"><span class="menuitem">menu</span></div>
+<script>
+$(document).ready(function() {
+    $("div.menu").css({"left":"0px","top":$(window).height()*0.5-15,"width":$(this).children("span").css("font-size")});
+	$("span.menuitem").mouseover(function(){getMenuItem($(this))});
+	$(document).on("mouseover","p.menuitem",function(){getTitle($(this))});
+});
+var getMenuItem = function(teg){
+	var tag = $(teg).parent();
+	
+	$.ajax({
+		type:"post",
+		url:"/showMenu",
+		data:{content:""},
+		success: function(json){
+			setMenuItem(json,tag);
+			
+			}
+		
+		});
+	};
+var setMenuItem = function(json,tag){
+	console.log(json.title);
+	var title = json.title;
+	var div = document.createElement("div");
+		div.className = "titlelist";
+		$("body").append(div);
+		for(var i = 0;i<title.length;i++)
+	{	
+		var p = document.createElement("p");
+		p.className = "menuitem";
+		p.innerHTML = title[i];
+		$("div.titlelist").append(p);
+		}
+		$("div.titlelist").css({"top":$(window).height()*0.5+$(tag).height(),"width":$(this).children("p").css("font-size")});
+		$("div.titlelist").css({"left":$("div.titlelist").width()*-1})
+		$("div.titlelist").animate({left:"0px",opacity:"0.5"},1000);
+		$(tag).children("span.menuitem").off("mouseover");
+	};
+var getTitle = function(tag){
+	var title = $(tag).html();
+	 $(tag).css({"background-color":"#C9C9C9"});
+	$(document).off("mouseover","p.menuitem");
+	$.ajax({
+		type:"post",
+		url:"/showMenu",
+		data:{content:title},
+		success: function(json){
+			setTitle(json,$(tag).parent("div"));
+			}		
+		});
+var setTitle = function(json,tag){
+     console.log(json.title);
+	 console.log($(tag).html());
+	 var title = json.title;
+	 	var div = document.createElement("div");
+		div.className = "titlelist";
+		$("body").append(div);
+		for(var i = 0;i<title.length;i++)
+	{	
+		var p = document.createElement("p");
+		p.className = "menuitem";
+		p.innerHTML = title[i];
+		$("div.titlelist:last").append(p);
+		}
+		$("div.titlelist:last").css({"top":$(tag).css("top"),"width":"auto"});
+		$("div.titlelist:last").css({"left":$("div.titlelist").width()*-1})
+		$("div.titlelist:last").animate({left:$(tag).width(),opacity:"0.5"},1000);
+	}
+	}
+
+</script>
+{% endblock  %} 

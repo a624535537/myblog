@@ -1,0 +1,17 @@
+{% extends './layout.html'%}
+{% block head %}
+{% parent %}
+<link href="/css/css.css" rel="stylesheet" type="text/css">
+<script src="/lib/jquery.form.js" type="text/javascript"></script>
+<script src="/js/handleindex.js" type="text/javascript"></script>
+<script src="/js/handleindex_function.js" type="text/javascript"></script>
+<title>树熊</title>
+{% endblock  %}
+{% block body %}
+<div class="mubu"></div>
+<div class="menubox"><img class="exit" src="/img/exit.png"><div class="boxitem"><a class="title_href" title="././public/说点什么.txt">说点什么</a></div><a href="/test">test</a></div>
+<img class="menu" src="/img/menu.png"/>
+<div class="main"><div class="head"><img class="logo" src="/img/title.png"></div>
+<div class="show"></div><div class="comment">nickname<br><input id='nickname' name="nickname" type="text"/><br>comment<br><textarea id="comment" type="text" name="comment"></textarea><br><input type="button" value="submit"/></div></div>
+
+{% endblock  %} 

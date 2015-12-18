@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../test/css.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./public/js/jquery.min.js"></script>
+<script type="text/javascript" src="./function.js"></script>
+<script type="text/javascript">
+$(document).ready(function (){
+	initi(); 
+	$(window).resize(re_size);
+	$("span.exit").click(menu_exit);
+    $("img.menu").click(menu_out);
+	$(window).scroll(mb_scroll);
+});
+</script>
+</head>
+<body>
+<div class="mubu"></div>
+<div class="menubox"><span class="exit">返回</span></div>
+<img class="menu" src="public/img/menu.png"/>
+<div class="main"><div class="head"></div>
+<div class="show"></div>
+</div>
+</body>
+</html>
